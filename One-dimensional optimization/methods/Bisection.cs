@@ -26,12 +26,6 @@ namespace One_dimensional_optimization.methods
             double fa = EvaluateFunction(a);
             double fb = EvaluateFunction(b);
 
-            if (fa * fb > 0)
-            {
-                Console.WriteLine("Error: The function values at the interval endpoints have the same sign.");
-                return double.NaN;
-            }
-
             double c = 0;
             double fcLeft = 0;
             double fcRight = 0;
@@ -45,20 +39,20 @@ namespace One_dimensional_optimization.methods
                 fcLeft = EvaluateFunction(c - e / 2);
                 fcRight = EvaluateFunction(c + e / 2);
 
-                Console.WriteLine("{0}\t\t\t{1}\t\t\t{2}\t\t\t{3}\t\t\t{4}\t\t\t{5}", iteration, a, b, c, fcLeft, fcRight);
+                Console.WriteLine("{0, 4}\t\t\t{1, 20}\t\t\t{2, 20}\t\t\t{3, 20}\t\t\t{4, 20}\t\t\t{5, 20}", iteration, a, b, c, fcLeft, fcRight);
 
                 if (fcLeft >= fcRight)
                 {
-                    a = c - e / 2;                    
+                    b = c + e / 2;                    
                 }
                 else
                 {
-                    b = c + e / 2;
+                    a = c - e / 2;
                 } 
 
                 iteration++;
                 functionEvaluations++;
-            } while (Math.Abs(b - a) > e);
+            } while ((Math.Abs(b - a) - e) == 1e-9);
 
             Console.WriteLine("Function evaluations: {0}", functionEvaluations);
             return c;

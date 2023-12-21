@@ -23,14 +23,14 @@ namespace One_dimensional_optimization.methods
         {
             double max = a * Math.Exp(-0.5 * a * a);
 
-            Console.WriteLine("Iteration\t\t\tx\t\t\t\t\tf(x)");
+            Console.WriteLine("Iteration\t\t\t  x\t\t\t\t\tf(x)");
 
             for (int i = 0; i <= steps; i++)
             {
                 double x = a + e * i;
                 double cur = EvaluateFunction(x);
 
-                Console.WriteLine("{0}\t\t\t{1}\t\t\t\t\t{2}", i, x, cur);
+                Console.WriteLine("{0,5}\t\t\t{1,20}\t\t\t{2,20}", i, x, cur);
                 functionEvaluations++;
 
                 if (max < cur)
@@ -48,7 +48,7 @@ namespace One_dimensional_optimization.methods
             double h = Math.Abs(b - a) / n;
             double max = a * Math.Exp(-0.5 * a * a);
 
-            Console.WriteLine("Iteration\t\t\tx\t\t\t\tf(x)");
+            Console.WriteLine("Iteration\t\t\t  x\t\t\t\t\tf(x)");
 
             while (h > e)
             {
@@ -57,7 +57,7 @@ namespace One_dimensional_optimization.methods
                     double x = a + h * i;
                     double cur = EvaluateFunction(x);
 
-                    Console.WriteLine("{0}\t\t\t{1}\t\t\t\t{2}", functionEvaluations, x, cur);
+                    Console.WriteLine("{0,5}\t\t\t{1,20}\t\t\t{2,20}", functionEvaluations, x, cur);
                     functionEvaluations++;
 
                     if (max <= cur)
@@ -76,8 +76,10 @@ namespace One_dimensional_optimization.methods
                 }
                 else
                 {
-                    b = a + h * (Array.IndexOf(Enumerable.Range(0, n + 1).ToArray(), Array.Find(Enumerable.Range(0, n + 1).ToArray(), el => el * h == EvaluateFunction(el * h))) + 1);
-                    a = a + h * (Array.IndexOf(Enumerable.Range(0, n + 1).ToArray(), Array.Find(Enumerable.Range(0, n + 1).ToArray(), el => el * h == EvaluateFunction(el * h))) - 1);
+                    int index = Array.IndexOf(Enumerable.Range(0, n + 1).ToArray(), Array.Find(Enumerable.Range(0, n + 1).ToArray(), el => el * h == EvaluateFunction(el * h)));
+
+                    b = a + h * (index + 1);
+                    a = a + h * (index - 1);
                 }
 
                 h = Math.Abs(b - a) / n;

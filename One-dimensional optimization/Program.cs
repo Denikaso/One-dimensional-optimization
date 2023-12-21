@@ -44,14 +44,14 @@ Scanning variableStepScanning = new Scanning(a, b, e);
 double maxVariableStepScanning = variableStepScanning.CalculateWithVariableStep(n);
 Console.WriteLine($"Maximum value found: {maxVariableStepScanning}\n");
 
-// Тестирование метода золотого сечения
-Console.WriteLine("\nTesting Golden Section Method:");
-GoldenSection goldenSection = new GoldenSection(a, b, e);
-double goldenSectionResult = goldenSection.Calculate();
-Console.WriteLine($"Maximum value found: {goldenSectionResult}\n");
-
 // Тестирование метода половинного деления
 Console.WriteLine("\nTesting Bisection Method:");
 Bisection bisection = new Bisection(a, b, e);
 double bisectionResult = bisection.Calculate();
 Console.WriteLine($"Maximum value found: {bisectionResult}\n");
+
+// Тестирование метода золотого сечения
+Console.WriteLine("\nTesting Golden Section Method:");
+GoldenSection goldenSection = new GoldenSection(a, b, e);
+double goldenSectionResult = goldenSection.Calculate();
+Console.WriteLine($"Maximum value found: {goldenSectionResult}\n");

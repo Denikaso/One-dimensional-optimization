@@ -25,32 +25,28 @@ namespace One_dimensional_optimization.methods
 
         public double Calculate()
         {
-            double x1 = b - goldenRatio * (b - a);
-            double x2 = a + goldenRatio * (b - a);
+            double x2 = a + (b - a) * ((Math.Sqrt(5) - 1) / 2);
+            double x1 = b - (b - a) * ((Math.Sqrt(5) - 1) / 2);            
 
             double f1 = EvaluateFunction(x1);
             double f2 = EvaluateFunction(x2);
 
-            Console.WriteLine("Iteration\ta\t\tb\t\tx1\t\tx2\t\tf(x1)\t\tf(x2)");
+            Console.WriteLine("{0, 4}\t{1, 16}\t{2, 16}\t{3, 16}\t{4, 16}\t{5, 16}\t{6, 16}", "Iter", "a", "b", "x1", "x2", "f(x1)", "f(x2)");
 
             while (Math.Abs(b - a) > e)
             {
-                Console.WriteLine("{0}\t\t{1}\t\t{2}\t\t{3}\t\t{4}\t\t{5}\t\t{6}", functionEvaluations, a, b, x1, x2, f1, f2);
+                Console.WriteLine("{0, 4}\t{1, 16}\t{2, 16}\t{3, 16}\t{4, 16}\t{5, 16}\t{6, 16}", functionEvaluations, a, b, x1, x2, f1, f2);
 
                 if (f1 < f2)
                 {
-                    b = x2;
-                    x2 = x1;
-                    f2 = f1;
-                    x1 = b - goldenRatio * (b - a);
+                    a = x1;
+                    x1 = b - (b - a) * ((Math.Sqrt(5) - 1) / 2);
                     f1 = EvaluateFunction(x1);
                 }
                 else
                 {
-                    a = x1;
-                    x1 = x2;
-                    f1 = f2;
-                    x2 = a + goldenRatio * (b - a);
+                    b = x2;                                        
+                    x2 = a + (b - a) * ((Math.Sqrt(5) - 1) / 2);                     
                     f2 = EvaluateFunction(x2);
                 }
 
