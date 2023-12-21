@@ -19,10 +19,10 @@ namespace One_dimensional_optimization.methods
             functionEvaluations = 0;
         }
 
-        public double Calculate()
+        public double Calculate(out double maxx)
         {
             double max = a * Math.Exp(-0.5 * a * a);
-
+            maxx = 0;
             Console.WriteLine("Iteration\t\t\t  x\t\t\t\t\tf(x)");
 
             for (int i = 0; i <= steps; i++)
@@ -36,6 +36,7 @@ namespace One_dimensional_optimization.methods
                 if (max < cur)
                 {
                     max = cur;
+                    maxx = x;
                 }
             }
 
@@ -43,10 +44,11 @@ namespace One_dimensional_optimization.methods
             return max;
         }
 
-        public double CalculateWithVariableStep(int n)
+        public double CalculateWithVariableStep(int n, out double maxx)
         {
             double h = Math.Abs(b - a) / n;
             double max = a * Math.Exp(-0.5 * a * a);
+            maxx = 0;
 
             Console.WriteLine("Iteration\t\t\t  x\t\t\t\t\tf(x)");
 
@@ -63,6 +65,7 @@ namespace One_dimensional_optimization.methods
                     if (max <= cur)
                     {
                         max = cur;
+                        maxx = x;
                     }
                 }
 

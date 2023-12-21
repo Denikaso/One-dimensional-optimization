@@ -21,7 +21,7 @@ namespace One_dimensional_optimization.methods
             functionEvaluations = 0;
         }
 
-        public double Calculate()
+        public double Calculate(out double x)
         {
             double fa = EvaluateFunction(a);
             double fb = EvaluateFunction(b);
@@ -54,8 +54,17 @@ namespace One_dimensional_optimization.methods
                 functionEvaluations++;
             } while ((Math.Abs(b - a) - e) == 1e-9);
 
-            Console.WriteLine("Function evaluations: {0}", functionEvaluations);
-            return c;
+            Console.WriteLine("Function evaluations: {0}", functionEvaluations);            
+            if(fcLeft > fcRight)
+            {
+                x = c - e / 2;
+                return fcLeft;
+            }
+            else
+            {
+                x = c + e / 2;
+                return fcRight;
+            }            
         }
 
         private double EvaluateFunction(double x)

@@ -28,8 +28,10 @@ while (!double.TryParse(Console.ReadLine(), out e) || e <= 0)
 // Тестирование метода сканирования
 Console.WriteLine("\nTesting Scanning Method:");
 Scanning scanning = new Scanning(a, b, e);
-double maxScanning = scanning.Calculate();
-Console.WriteLine($"Maximum value found: {maxScanning}\n");
+double x;
+double maxScanning = scanning.Calculate(out x);
+Console.WriteLine($"Maximum value found: {maxScanning}");
+Console.WriteLine($"At the point: {x}\n");
 
 // Тестирование метода сканирования с переменным шагом
 Console.WriteLine("\nTesting Scanning with Variable Step Method:");
@@ -41,17 +43,23 @@ while (!int.TryParse(Console.ReadLine(), out n) || n <= 0)
 }
 
 Scanning variableStepScanning = new Scanning(a, b, e);
-double maxVariableStepScanning = variableStepScanning.CalculateWithVariableStep(n);
-Console.WriteLine($"Maximum value found: {maxVariableStepScanning}\n");
+double x1;
+double maxVariableStepScanning = variableStepScanning.CalculateWithVariableStep(n, out x1);
+Console.WriteLine($"Maximum value found: {maxVariableStepScanning}");
+Console.WriteLine($"At the point: {x1}\n");
 
 // Тестирование метода половинного деления
 Console.WriteLine("\nTesting Bisection Method:");
 Bisection bisection = new Bisection(a, b, e);
-double bisectionResult = bisection.Calculate();
-Console.WriteLine($"Maximum value found: {bisectionResult}\n");
+double x2;
+double bisectionResult = bisection.Calculate(out x2);
+Console.WriteLine($"Maximum value found: {bisectionResult}");
+Console.WriteLine($"At the point: {x2}\n");
 
 // Тестирование метода золотого сечения
 Console.WriteLine("\nTesting Golden Section Method:");
 GoldenSection goldenSection = new GoldenSection(a, b, e);
-double goldenSectionResult = goldenSection.Calculate();
-Console.WriteLine($"Maximum value found: {goldenSectionResult}\n");
+double x3;
+double goldenSectionResult = goldenSection.Calculate(out x3);
+Console.WriteLine($"Maximum value found: {goldenSectionResult}");
+Console.WriteLine($"At the point: {x3}\n");
